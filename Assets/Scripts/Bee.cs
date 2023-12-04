@@ -5,18 +5,30 @@ using UnityEngine;
 public class Bee : MonoBehaviour
 {
     public GameObject border; // Reference to the Border GameObject
+    public int lives = 3;
+    
+    private float delay;
+    private Game g;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        g = Game.GetGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Follow mouse
-        FollowMouse();
+
+        if(g.GetRespawn())
+        {
+            Invoke("FollowMouse", 1);
+        }
+        else
+        {
+            // Follow mouse
+            FollowMouse();
+        }
     }
 
     // Follow mouse

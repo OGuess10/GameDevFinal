@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class Balloon : MonoBehaviour
 {
+    private Game g;
+
+    void Start()
+    {
+        g = Game.GetGame();
+    }
+
     void Update()
     {
-        // Check if mouse collides with Balloon's collider
-        if (GetComponent<CircleCollider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+        if(!g.GetRespawn())
         {
-            // Kill the balloon
-            Destroy(gameObject);
+            // Check if mouse collides with Balloon's collider
+            if (GetComponent<CircleCollider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+            {
+                // Kill the balloon
+                Destroy(gameObject);
+            }
         }
     }
 }

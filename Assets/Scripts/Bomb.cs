@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
+    private Game g;
+
+    void Start()
+    {
+        g = Game.GetGame();
+    }
+
     void Update()
     {
-        // Get the mouse position in world space
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Check if mouse collides with Border's collider
-        if (GetComponent<CircleCollider2D>().OverlapPoint(mousePosition))
+        if(!g.GetRespawn())
         {
-            // Kill the bee
-            Destroy(GameObject.Find("Bee"));
+            // Get the mouse position in world space
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // Check if mouse collides with Border's collider
+            if (GetComponent<CircleCollider2D>().OverlapPoint(mousePosition))
+            {
+                // Kill the bee
+                g.KillBee();
+            }
         }
     }
 }

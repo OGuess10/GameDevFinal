@@ -6,6 +6,7 @@ public class Bee : MonoBehaviour
 {
     public GameObject border;
     public int lives = 5;
+    public int level;
 
     private float delay;
     private Game g;
@@ -33,6 +34,7 @@ public class Bee : MonoBehaviour
         // Get the mouse position in world space
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        Debug.Log("Current Level: " + Game.level);
         // Determine current level
         switch (Game.level)
         {

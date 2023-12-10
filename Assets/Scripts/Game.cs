@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
     public Text pointsTxt;
     public Slider pointsSlider;
     public GameObject[] livesArr;
+    public bool inTutorial = true;
 
     private int points = 0;
     private GameObject[] balloonsList;
@@ -30,7 +31,13 @@ public class Game : MonoBehaviour
 
     public void KillBee()
     {
-        if(bee.lives <= 0)
+        if(inTutorial)
+        {
+            bee.transform.position = beeStartBtn.transform.position;
+            beeCanMove = false;
+            beeStartBtn.SetActive(true);
+        }
+        else if(bee.lives <= 0)
         {
             Destroy(bee);
         } else
@@ -44,8 +51,16 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+        beeCanMove = true;
+        inTutorial = true;
+    }
+
     public void NextLevel()
     {
+        inTutorial = false;
         level++;
         switch(level)
         {

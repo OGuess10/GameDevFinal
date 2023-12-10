@@ -69,14 +69,12 @@ public class Game : MonoBehaviour
                 beeCanMove = false;
                 break;
             case 2:
-                // SceneManager.LoadScene("Level_2");
+                SceneManager.LoadScene("Level_2");
                 beeCanMove = false;
-                Debug.Log("Loaded Level 2");
                 break;
             case 3:
                 // SceneManager.LoadScene("Level_2");
                 beeCanMove = false;
-                Debug.Log("Loaded Level 3");
                 break;
         }
     }
@@ -107,30 +105,11 @@ public class Game : MonoBehaviour
         Debug.Log("Length: " + balloonsList.Length);
         Debug.Log("Level: " + level);
 
-        switch (level)
+        if (balloonsList.Length == 1)
         {
-            case 1:
-                if (balloonsList.Length == 1)
-                {
-                    Debug.Log("Level 1 Complete");
-                    return true;
-                }
-                break;
-            case 2:
-                if (balloonsList.Length == 2)
-                {
-                    Debug.Log("Level 2 Complete");
-                    return true;
-                }
-                break;
-            case 3:
-                if (balloonsList.Length == 3)
-                {
-                    Debug.Log("Level 3 Complete");
-                    return true;
-                }
-                break;
+            return true;
         }
+
         return false;
     }
 

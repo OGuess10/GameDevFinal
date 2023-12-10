@@ -51,6 +51,7 @@ public class Bee : MonoBehaviour
                 }
                 break;
             case 1:
+            case 2:
                 // Check if mouse collides with Border's collider
                 if (border.GetComponent<PolygonCollider2D>().OverlapPoint(mousePosition))
                 {
@@ -88,7 +89,6 @@ public class Bee : MonoBehaviour
             if (g.AllBalloonsGone())
             {
                 g.NextLevel();
-                Debug.Log("Next Level");
             }
         }
     }

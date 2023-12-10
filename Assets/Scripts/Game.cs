@@ -96,8 +96,7 @@ public class Game : MonoBehaviour
                 SceneManager.LoadScene("Level_2");
                 break;
             case 2:
-                // SceneManager.LoadScene("Level_2");
-                beeCanMove = false;
+                SceneManager.LoadScene("Level_3");
                 break;
         }
     }

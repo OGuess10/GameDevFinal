@@ -63,6 +63,12 @@ public class Bee : MonoBehaviour
         {
             Destroy(collision.gameObject);
             g.AddPoint();
+
+            if (g.AllBalloonsGone())
+            {
+                g.NextLevel();
+                Debug.Log("Next Level");
+            }
         }
     }
 }

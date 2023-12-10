@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
 {
     private static Game game;
     public Bee bee;
-    public int level = 0;
+    public static int level = 0;
     public bool beeCanMove = false;
     public GameObject beeStartBtn;
     public Text pointsTxt;
@@ -16,6 +16,7 @@ public class Game : MonoBehaviour
     public GameObject[] livesArr;
 
     private int points = 0;
+    private GameObject[] balloonsList;
 
     public static Game GetGame()
     {
@@ -52,6 +53,16 @@ public class Game : MonoBehaviour
                 SceneManager.LoadScene("Level_1");
                 beeCanMove = false;
                 break;
+            case 2:
+                // SceneManager.LoadScene("Level_2");
+                beeCanMove = false;
+                Debug.Log("Loaded Level 2");
+                break;
+            case 3:
+                // SceneManager.LoadScene("Level_2");
+                beeCanMove = false;
+                Debug.Log("Loaded Level 3");
+                break;
         }
     }
 
@@ -66,5 +77,45 @@ public class Game : MonoBehaviour
         points++;
         pointsSlider.value = points;
         pointsTxt.text = points + " Points";
+    }
+
+    // Get a list of all the balloons in the scene
+    public GameObject[] GetBalloons()
+    {
+        return GameObject.FindGameObjectsWithTag("Balloon");
+    }
+
+    // Check if all balloons are gone
+    public bool AllBalloonsGone()
+    {
+        balloonsList = GetBalloons();
+        Debug.Log("Length: " + balloonsList.Length);
+        Debug.Log("Level: " + level);
+
+        switch (level)
+        {
+            case 1:
+                if (balloonsList.Length == 1)
+                {
+                    Debug.Log("Level 1 Complete");
+                    return true;
+                }
+                break;
+            case 2:
+                if (balloonsList.Length == 2)
+                {
+                    Debug.Log("Level 2 Complete");
+                    return true;
+                }
+                break;
+            case 3:
+                if (balloonsList.Length == 3)
+                {
+                    Debug.Log("Level 3 Complete");
+                    return true;
+                }
+                break;
+        }
+        return false;
     }
 }

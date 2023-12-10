@@ -72,6 +72,7 @@ public class Bee : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collided with " + collision.gameObject.tag);
         if(collision.gameObject.tag == "Bomb")
         {
             Destroy(collision.gameObject);

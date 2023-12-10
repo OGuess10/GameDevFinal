@@ -29,7 +29,7 @@ public class Game : MonoBehaviour
 
     public void KillBee()
     {
-        if(bee.lives < 0)
+        if(bee.lives <= 0)
         {
             Destroy(bee);
         } else

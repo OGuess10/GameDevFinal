@@ -36,7 +36,6 @@ public class Bee : MonoBehaviour
 
         // Check if mouse collides with Border's collider
         if (levelOneImage.GetComponent<PolygonCollider2D>().OverlapPoint(mousePosition))
-        // if(!colliding)
         {
             // Set bee position to mouse position, with Z-coordinate of 0
             transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
@@ -54,6 +53,10 @@ public class Bee : MonoBehaviour
         if(collision.gameObject.tag == "Bomb")
         {
             Destroy(collision.gameObject);
+            g.KillBee();
+        }
+        else if (collision.gameObject.tag == "RedZone")
+        {
             g.KillBee();
         }
         else if(collision.gameObject.tag == "Balloon")

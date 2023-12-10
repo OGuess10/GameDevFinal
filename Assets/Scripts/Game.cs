@@ -133,4 +133,10 @@ public class Game : MonoBehaviour
         }
         return false;
     }
+
+    // Get the current level
+    public int GetLevel()
+    {
+        return level;
+    }
 }

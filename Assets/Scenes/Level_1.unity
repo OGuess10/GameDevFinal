@@ -2500,7 +2500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bee: {fileID: 1196142072}
-  level: 0
   beeCanMove: 0
   beeStartBtn: {fileID: 165603470}
   pointsTxt: {fileID: 283366195}
@@ -2511,6 +2510,7 @@ MonoBehaviour:
   - {fileID: 871781269}
   - {fileID: 1024176125}
   - {fileID: 1522573765}
+  inTutorial: 1
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,7 +2912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23c28e70de4e944b998c7a720ca1a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelOneImage: {fileID: 1939442494}
+  border: {fileID: 1939442494}
   lives: 5
 --- !u!135 &1196142073
 SphereCollider:

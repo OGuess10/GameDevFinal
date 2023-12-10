@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Bee : MonoBehaviour
 {
-    // public GameObject border; // Reference to the Border GameObject
-    public GameObject levelOneImage; // Reference to the Level One Image GameObject
+    public GameObject border;
     public int lives = 5;
 
     private float delay;
@@ -34,17 +33,39 @@ public class Bee : MonoBehaviour
         // Get the mouse position in world space
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Check if mouse collides with Border's collider
-        if (levelOneImage.GetComponent<PolygonCollider2D>().OverlapPoint(mousePosition))
+        // Determine current level
+        switch (Game.level)
         {
-            // Set bee position to mouse position, with Z-coordinate of 0
-            transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
-            curPos = transform.position;
-        }
-        else
-        {
-            // Don't move bee
-            transform.position = transform.position;
+            case 0:
+                // Check if mouse collides with Border's collider
+                if (border.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition))
+                {
+                    // Set bee position to mouse position, with Z-coordinate of 0
+                    transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
+                    curPos = transform.position;
+                }
+                else
+                {
+                    // Don't move bee
+                    transform.position = transform.position;
+                }
+                break;
+            case 1:
+                // Check if mouse collides with Border's collider
+                if (border.GetComponent<PolygonCollider2D>().OverlapPoint(mousePosition))
+                {
+                    // Set bee position to mouse position, with Z-coordinate of 0
+                    transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
+                    curPos = transform.position;
+                }
+                else
+                {
+                    // Don't move bee
+                    transform.position = transform.position;
+                }
+                break;
+            default:
+                break;
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311932, g: 0.38073996, b: 0.3587271, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2469,7 +2469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bee: {fileID: 1196142072}
-  level: 0
   beeCanMove: 0
   beeStartBtn: {fileID: 1297920231}
   pointsTxt: {fileID: 283366195}
@@ -2742,7 +2741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23c28e70de4e944b998c7a720ca1a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelOneImage: {fileID: 0}
+  border: {fileID: 549226107}
   lives: 3
 --- !u!58 &1196142073
 CircleCollider2D:

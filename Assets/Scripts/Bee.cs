@@ -54,6 +54,7 @@ public class Bee : MonoBehaviour
             case 1:
             case 2:
             case 3:
+            case 4:
                 // Check if mouse collides with Border's collider
                 if (border.GetComponent<PolygonCollider2D>().OverlapPoint(mousePosition))
                 {

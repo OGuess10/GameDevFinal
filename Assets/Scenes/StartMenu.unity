@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311932, g: 0.38073996, b: 0.3587271, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8bb4fffb90fd95e4aa6efbbcfcdc4935, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -727,12 +727,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bee: {fileID: 0}
-  level: 0
   beeCanMove: 0
   beeStartBtn: {fileID: 0}
   pointsTxt: {fileID: 0}
   pointsSlider: {fileID: 0}
   livesArr: []
+  inTutorial: 0
+  timerText: {fileID: 0}
+  paused: 0
+  pausedPanel: {fileID: 0}
+  levelText: {fileID: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,12 +764,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bee: {fileID: 0}
-  level: 0
   beeCanMove: 0
   beeStartBtn: {fileID: 0}
   pointsTxt: {fileID: 0}
   pointsSlider: {fileID: 0}
   livesArr: []
+  inTutorial: 0
+  timerText: {fileID: 0}
+  paused: 0
+  pausedPanel: {fileID: 0}
+  levelText: {fileID: 0}
 --- !u!1 &1344135325
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ public class RedZone : MonoBehaviour
     }
     void Update()
     {
-        if(!g.GetRespawn())
-        {
+        // if(!g.GetRespawn())
+        // {
             // Get the mouse position in world space
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -23,6 +23,6 @@ public class RedZone : MonoBehaviour
                 // Kill the bee
                 g.KillBee();
             }
-        }
+        // }
     }
 }

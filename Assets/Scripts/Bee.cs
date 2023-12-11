@@ -21,11 +21,7 @@ public class Bee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(g.GetRespawn())
-        {
-            Invoke("FollowMouse", 1); // Wait 1 second before following mouse
-        }
-        else if (g.beeCanMove)
+        if (g.beeCanMove)
         {
             // Follow mouse
             FollowMouse();
@@ -53,32 +49,17 @@ public class Bee : MonoBehaviour
         }
     }
 
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     colliding = false;
-    // }
-
-    // void OnCollisionExit2D(Collision2D collision)
-    // {
-    //     colliding = true;
-    // }
-
-
-    // {
-    //     // if(curPos.x > Camera.main.ScreenToWorldPoint(Input.mousePosition))
-    //     // {
-    //     //     colliding = false;
-    //     // }
-
-    //     // If bee is within the border, allow it to move
-    //     if (border.GetComponent<BoxCollider2D>().OverlapPoint(curPos))
-    //     {
-    //         colliding = false;
-    //     }
-    //     else
-    //     {
-    //         colliding = true;
-    //     }
-
-    // }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Bomb")
+        {
+            Destroy(collision.gameObject);
+            g.KillBee();
+        }
+        else if(collision.gameObject.tag == "Balloon")
+        {
+            Destroy(collision.gameObject);
+            g.AddPoint();
+        }
+    }
 }

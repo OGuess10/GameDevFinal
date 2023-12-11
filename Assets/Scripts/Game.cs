@@ -8,11 +8,11 @@ public class Game : MonoBehaviour
 {
     private static Game game;
     public Bee bee;
-    public bool respawn = false;
     public int level = 0;
     public bool beeCanMove = false;
     public GameObject beeStartBtn;
     public Text pointsTxt;
+    public Slider pointsSlider;
     public GameObject[] livesArr;
 
     private int points = 0;
@@ -20,16 +20,6 @@ public class Game : MonoBehaviour
     public static Game GetGame()
     {
         return game;
-    }
-
-    public bool GetRespawn()
-    {
-        return respawn;
-    }
-
-    public void SetRespawn()
-    {
-        respawn = false;
     }
 
     void Awake()
@@ -47,7 +37,7 @@ public class Game : MonoBehaviour
             bee.lives--;
             livesArr[bee.lives].SetActive(false);
             bee.transform.position = beeStartBtn.transform.position;
-            respawn = true;
+            beeCanMove = false;
             beeStartBtn.SetActive(true);
             // Invoke("SetRespawn", 1);
         }
@@ -68,12 +58,13 @@ public class Game : MonoBehaviour
     public void StartBee()
     {
         beeCanMove = true;
-        SetRespawn();
         beeStartBtn.SetActive(false);
     }
 
     public void AddPoint()
     {
         points++;
+        pointsSlider.value = points;
+        pointsTxt.text = points + " Points";
     }
 }

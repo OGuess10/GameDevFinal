@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class Game : MonoBehaviour
     public int level = 0;
     public bool beeCanMove = false;
     public GameObject beeStartBtn;
+    public Text pointsTxt;
+    public GameObject[] livesArr;
+
+    private int points = 0;
 
     public static Game GetGame()
     {
@@ -22,7 +27,7 @@ public class Game : MonoBehaviour
         return respawn;
     }
 
-    void SetRespawn()
+    public void SetRespawn()
     {
         respawn = false;
     }
@@ -40,9 +45,11 @@ public class Game : MonoBehaviour
         } else
         {
             bee.lives--;
-            bee.transform.position = Vector3.zero;
+            livesArr[bee.lives].SetActive(false);
+            bee.transform.position = beeStartBtn.transform.position;
             respawn = true;
-            Invoke("SetRespawn", 1);
+            beeStartBtn.SetActive(true);
+            // Invoke("SetRespawn", 1);
         }
     }
 
@@ -61,6 +68,12 @@ public class Game : MonoBehaviour
     public void StartBee()
     {
         beeCanMove = true;
+        SetRespawn();
         beeStartBtn.SetActive(false);
+    }
+
+    public void AddPoint()
+    {
+        points++;
     }
 }

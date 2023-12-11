@@ -20,6 +20,9 @@ public class Balloon : MonoBehaviour
             {
                 // Kill the balloon
                 Destroy(gameObject);
+
+                // Add points
+                g.AddPoint();
             }
         }
     }

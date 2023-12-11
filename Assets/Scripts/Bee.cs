@@ -6,7 +6,7 @@ public class Bee : MonoBehaviour
 {
     // public GameObject border; // Reference to the Border GameObject
     public GameObject levelOneImage; // Reference to the Level One Image GameObject
-    public int lives = 3;
+    public int lives = 5;
 
     private float delay;
     private Game g;

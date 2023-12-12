@@ -197,9 +197,10 @@ public class Game : MonoBehaviour
 
     public void Restart()
     {
+        timer = Timer.timer;
         timer.targetTime = 240.0f;
-        SceneManager.LoadScene("Level_1");
         timer.totalPoints = 0;
+        SceneManager.LoadScene("Level_1");
     }
 
     public void SaveGame()

@@ -21,9 +21,9 @@ public class RedZone : MonoBehaviour
         }
         else if (g.GetLevel() == 3)
         {
-            float speed = 2f; // Adjust this to change the speed of movement
-            float xStepSize = 6f; // Adjust this to change the size of the steps
-            float yStepSize = 2f; // Adjust this to change the size of the steps
+            float speed = 2f;
+            float xStepSize = 6f;
+            float yStepSize = 2f;
 
             // Calculate the current step based on the time
             int step = Mathf.FloorToInt(Time.time * speed) % 4;
@@ -49,20 +49,11 @@ public class RedZone : MonoBehaviour
             // Apply the movement
             transform.position += movement * Time.deltaTime;
         }
+        else if (g.GetLevel() == 4)
+        {
+            // Move RedZone object up and down repeatedly
+            float distance = Mathf.PingPong(Time.time * 4f, 6f) - 3.65f;
+            transform.position = new Vector3(transform.position.x, distance, transform.position.z);
+        }
     }
-    // void Update()
-    // {
-    //     // if(!g.GetRespawn())
-    //     // {
-    //         // Get the mouse position in world space
-    //         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-    //         // Check if mouse collides with Border's collider
-    //         if (GetComponent<BoxCollider2D>().OverlapPoint(mousePosition))
-    //         {
-    //             // Kill the bee
-    //             g.KillBee();
-    //         }
-    //     // }
-    // }
 }

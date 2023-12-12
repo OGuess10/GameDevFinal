@@ -11,6 +11,20 @@ public class RedZone : MonoBehaviour
         g = Game.GetGame();
     }
 
+    void Awake()
+    {
+        g = Game.GetGame();
+        if (g.GetLevel() == 3)
+        {
+            // Set position to (-0.7061678, 0.04, 0)
+            transform.position = new Vector3(-0.7061678f, 0.04f, 0f);
+            // Set rotation to (0, 0, 0)
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            // Set scale to (1.5, 1.5, 1)
+            transform.localScale = new Vector3(1.5f, 1.5f, 1f);
+        }
+    }
+
     void Update()
     {
         if (g.GetLevel() == 2)

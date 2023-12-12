@@ -17,9 +17,13 @@ public class Game : MonoBehaviour
     public GameObject[] livesArr;
     public bool inTutorial;
     public Text timerText;
+    public bool paused;
+    public GameObject pausedPanel;
+    public Text levelText;
 
     private Timer timer;
     private int points = 0;
+    private float pausedTime;
     private GameObject[] balloonsList;
 
     public static Game GetGame()
@@ -31,9 +35,14 @@ public class Game : MonoBehaviour
     {
         game = this;
         timer = Timer.timer;
-
+        paused = false;
+        pausedPanel.SetActive(false);
         level = bee.level;
-        if(bee.level == 0)
+        levelText.text = "Level " + level;
+        balloonsList = GetBalloons();
+        pointsSlider.maxValue = balloonsList.Length;
+
+        if(level == 0)
         {
             inTutorial = true;
         }
@@ -46,14 +55,26 @@ public class Game : MonoBehaviour
 
     void Update()
     {
-        if(timer == null)
+        if(!paused)
         {
-            Debug.Log("timer is null");
-            return;
+            timer.targetTime -= Time.deltaTime;
+            float seconds = timer.targetTime;
+            TimeSpan time = TimeSpan.FromSeconds(seconds);
+            timerText.text = time.ToString(@"mm\:ss");
         }
-        float seconds = timer.targetTime;
-        TimeSpan time = TimeSpan.FromSeconds(seconds);
-        timerText.text = time.ToString(@"mm\:ss");
+
+    }
+
+    public void Pause()
+    {
+        paused = true;
+        pausedPanel.SetActive(true);
+    }
+
+    public void Unpause()
+    {
+        paused = false;
+        pausedPanel.SetActive(false);
     }
 
     public void KillBee()

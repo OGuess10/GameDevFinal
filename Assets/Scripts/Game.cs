@@ -126,6 +126,9 @@ public class Game : MonoBehaviour
             case 3:
                 SceneManager.LoadScene("Level_4");
                 break;
+            case 4:
+                SceneManager.LoadScene("EndGame");
+                break;
         }
     }
 

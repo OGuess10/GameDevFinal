@@ -37,7 +37,7 @@ public class Game : MonoBehaviour
     void Awake()
     {
         game = this;
-        
+
         if(bee == null)
         {
             paused = true;
@@ -127,7 +127,7 @@ public class Game : MonoBehaviour
                 SceneManager.LoadScene("Level_4");
                 break;
             case 4:
-                SceneManager.LoadScene("EndGame");
+                GameOver();
                 break;
         }
     }

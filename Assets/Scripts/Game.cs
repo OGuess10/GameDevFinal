@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class Game : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Game : MonoBehaviour
     public Slider pointsSlider;
     public GameObject[] livesArr;
     public bool inTutorial;
+    public Text timerText;
+
+    private Timer timer;
     private int points = 0;
     private GameObject[] balloonsList;
 
@@ -26,6 +30,8 @@ public class Game : MonoBehaviour
     void Awake()
     {
         game = this;
+        timer = Timer.timer;
+
         level = bee.level;
         if(bee.level == 0)
         {
@@ -36,6 +42,18 @@ public class Game : MonoBehaviour
             inTutorial = false;
         }
         beeCanMove = false;
+    }
+
+    void Update()
+    {
+        if(timer == null)
+        {
+            Debug.Log("timer is null");
+            return;
+        }
+        float seconds = timer.targetTime;
+        TimeSpan time = TimeSpan.FromSeconds(seconds);
+        timerText.text = time.ToString(@"mm\:ss");
     }
 
     public void KillBee()

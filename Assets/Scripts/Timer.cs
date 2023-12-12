@@ -6,6 +6,8 @@ public class Timer : MonoBehaviour
 {
     public float targetTime = 240.0f;
     public static Timer timer;
+    public int totalPoints = 0;
+    public int lastLevel = 0;
 
     void Awake()
     {
@@ -24,6 +26,6 @@ public class Timer : MonoBehaviour
 
     void timerEnded()
     {
-
+        Game.GetGame().GameOver();
     }
 }

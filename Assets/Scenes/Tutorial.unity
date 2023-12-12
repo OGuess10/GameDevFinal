@@ -604,6 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   border: {fileID: 549226107}
   lives: 5
+  level: 0
 --- !u!4 &182088901
 Transform:
   m_ObjectHideFlags: 0
@@ -2252,10 +2253,14 @@ MonoBehaviour:
   bee: {fileID: 182088900}
   beeCanMove: 0
   beeStartBtn: {fileID: 1297920231}
-  pointsTxt: {fileID: 283366195}
+  pointsTxt: {fileID: 0}
   pointsSlider: {fileID: 2015116338}
   livesArr: []
   inTutorial: 1
+  timerText: {fileID: 0}
+  paused: 0
+  pausedPanel: {fileID: 0}
+  levelText: {fileID: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0

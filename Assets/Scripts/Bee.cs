@@ -77,11 +77,13 @@ public class Bee : MonoBehaviour
         Debug.Log("Collided with " + collision.gameObject.tag);
         if(collision.gameObject.tag == "Bomb")
         {
+            g.MinusPoints();
             Destroy(collision.gameObject);
             g.KillBee();
         }
         else if (collision.gameObject.tag == "RedZone")
         {
+            g.MinusPoints();
             g.KillBee();
         }
         else if(collision.gameObject.tag == "Balloon")

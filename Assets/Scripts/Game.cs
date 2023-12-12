@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using System.IO;
 
 public class Game : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Game : MonoBehaviour
     public bool paused;
     public GameObject pausedPanel;
     public Text levelText;
+    public InputField input;
+    public InputField id;
 
     private Timer timer;
     private int points = 0;
@@ -34,21 +37,28 @@ public class Game : MonoBehaviour
     void Awake()
     {
         game = this;
-        timer = Timer.timer;
-        paused = false;
-        pausedPanel.SetActive(false);
+        
+        if(bee == null)
+        {
+            paused = true;
+            return;
+        }
         level = bee.level;
-        levelText.text = "Level " + level;
-        balloonsList = GetBalloons();
-        pointsSlider.maxValue = balloonsList.Length;
-
         if(level == 0)
         {
             inTutorial = true;
+            paused = true;
         }
         else
         {
             inTutorial = false;
+            timer = Timer.timer;
+            paused = false;
+            pausedPanel.SetActive(false);
+            levelText.text = "Level " + level;
+            timer.lastLevel = level;
+            balloonsList = GetBalloons();
+            pointsSlider.maxValue = balloonsList.Length;
         }
         beeCanMove = false;
     }
@@ -85,8 +95,9 @@ public class Game : MonoBehaviour
             beeCanMove = false;
             beeStartBtn.SetActive(true);
         }
-        else if(bee.lives <= 0)
+        else if(bee.lives <= 1)
         {
+            GameOver();
             Destroy(bee);
         } else
         {
@@ -97,13 +108,6 @@ public class Game : MonoBehaviour
             beeStartBtn.SetActive(true);
             // Invoke("SetRespawn", 1);
         }
-    }
-
-    public void StartTutorial()
-    {
-        SceneManager.LoadScene("Tutorial");
-        beeCanMove = true;
-        inTutorial = true;
     }
 
     public void NextLevel()
@@ -130,9 +134,24 @@ public class Game : MonoBehaviour
 
     public void AddPoint()
     {
-        points++;
-        pointsSlider.value = points;
-        pointsTxt.text = points + " Points";
+        if(!inTutorial)
+        {
+            points++;
+            pointsSlider.value = points;
+            pointsTxt.text = points + " Points";
+            timer.totalPoints++;
+        }
+    }
+
+    public void MinusPoints()
+    {
+        if(!inTutorial)
+        {
+            points--;
+            pointsSlider.value = points;
+            pointsTxt.text = points + " Points";
+            timer.totalPoints--;
+        }
     }
 
     // Get a list of all the balloons in the scene
@@ -160,5 +179,31 @@ public class Game : MonoBehaviour
     public int GetLevel()
     {
         return level;
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("EndGame");
+
+        // Store last played level
+        PlayerPrefs.SetInt("Level", timer.lastLevel);
+    }
+
+    public void Restart()
+    {
+        timer.targetTime = 240.0f;
+        SceneManager.LoadScene("Level_1");
+        timer.totalPoints = 0;
+    }
+
+    public void SaveGame()
+    {
+        timer = Timer.timer;
+        float duration = 240.0f - timer.targetTime;
+        string data = "\nPlayerID: " + id.text + "\nDate: " + System.DateTime.Now + "\nDuration: " + duration + " seconds\nComments: " + input.text;
+
+        StreamWriter writer = new StreamWriter("PlayerData.txt", true);
+        writer.WriteLine(data);
+        writer.Close();
     }
 }

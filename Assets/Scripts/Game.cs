@@ -8,14 +8,13 @@ public class Game : MonoBehaviour
 {
     private static Game game;
     public Bee bee;
-    public static int level = 0;
+    public static int level;
     public bool beeCanMove = false;
     public GameObject beeStartBtn;
     public Text pointsTxt;
     public Slider pointsSlider;
     public GameObject[] livesArr;
-    public bool inTutorial = true;
-
+    public bool inTutorial;
     private int points = 0;
     private GameObject[] balloonsList;
 
@@ -27,6 +26,16 @@ public class Game : MonoBehaviour
     void Awake()
     {
         game = this;
+        level = bee.level;
+        if(bee.level == 0)
+        {
+            inTutorial = true;
+        }
+        else
+        {
+            inTutorial = false;
+        }
+        beeCanMove = false;
     }
 
     public void KillBee()
@@ -60,19 +69,15 @@ public class Game : MonoBehaviour
 
     public void NextLevel()
     {
-        inTutorial = false;
-        level++;
         switch(level)
         {
-            case 1:
+            case 0:
                 SceneManager.LoadScene("Level_1");
-                beeCanMove = false;
+                break;
+            case 1:
+                SceneManager.LoadScene("Level_2");
                 break;
             case 2:
-                SceneManager.LoadScene("Level_2");
-                beeCanMove = false;
-                break;
-            case 3:
                 // SceneManager.LoadScene("Level_2");
                 beeCanMove = false;
                 break;

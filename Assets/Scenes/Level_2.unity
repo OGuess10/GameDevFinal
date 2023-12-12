@@ -2591,6 +2591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   border: {fileID: 1059611079}
   lives: 5
+  level: 2
 --- !u!135 &1196142073
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -23,11 +23,13 @@ public class Game : MonoBehaviour
     public Text levelText;
     public InputField input;
     public InputField id;
+    public Text totalPointsText;
 
     private Timer timer;
     private int points = 0;
     private float pausedTime;
     private GameObject[] balloonsList;
+    private bool totalPointsChanged = false;
 
     public static Game GetGame()
     {
@@ -72,7 +74,12 @@ public class Game : MonoBehaviour
             TimeSpan time = TimeSpan.FromSeconds(seconds);
             timerText.text = time.ToString(@"mm\:ss");
         }
-
+        if(totalPointsChanged)
+        {
+            Debug.Log("should display now");
+            pointsTxt.text = "Total points: " + timer.totalPoints;
+            totalPointsChanged = false;
+        }
     }
 
     public void Pause()
@@ -190,6 +197,10 @@ public class Game : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadScene("EndGame");
+
+        timer = Timer.timer;
+        pointsTxt.text = "Total points: " + timer.totalPoints;
+        totalPointsChanged = true;
 
         // Store last played level
         PlayerPrefs.SetInt("Level", timer.lastLevel);
